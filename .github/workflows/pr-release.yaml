@@ -26,14 +26,14 @@ jobs:
       shell: bash
       run: echo "::set-output name=number::${{ github.event.pull_request.number || github.event.issue.number }}"
 
-    - name: Get docker image version
-      id: get-docker-image-version
+    - name: Create docker image version
+      id: create-docker-image-version
       shell: bash
       run: echo "::set-output name=version::PR-${{ steps.get-pr-number.outputs.number }}-${{ steps.get-short-sha.outputs.sha }}"
 
     - name: Create and push docker image
       shell: bash
-      run: echo "Created and pushed docker image with version ${{ steps.get-docker-image-version.outputs.version }}"
+      run: echo "Created and pushed docker image with version ${{ steps.create-docker-image-version.outputs.version }}"
 
     - name: Deploy docker image
       id: get_sha
