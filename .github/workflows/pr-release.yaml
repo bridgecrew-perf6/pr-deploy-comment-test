@@ -24,7 +24,7 @@ jobs:
     - name: Get PR number
       id: get-pr-number
       shell: bash
-      run: echo "::set-output name=number::$(git rev-parse --short HEAD)"
+      run: echo "::set-output name=number::${{ github.event.pull_request.number || github.event.issue.number }}"
 
     - name: Get version
       id: get-version
